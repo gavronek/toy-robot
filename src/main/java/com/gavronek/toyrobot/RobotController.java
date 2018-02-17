@@ -14,9 +14,6 @@ public class RobotController {
     private final Table table;
 
     @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
     public RobotController(final Table table) {
         this.table = table;
     }
