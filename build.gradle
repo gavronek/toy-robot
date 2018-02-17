@@ -22,9 +22,11 @@ repositories {
 	mavenCentral()
 }
 
-
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version: '2.4.3'
+
 }

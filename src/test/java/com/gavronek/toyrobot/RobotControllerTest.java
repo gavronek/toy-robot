@@ -1,5 +1,6 @@
 package com.gavronek.toyrobot;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class RobotControllerTest {
-    private final static String positionJson = "{\"x\" : 2, \"y\" : 3, \"facing\" : \"EAST\"}";
 
+    @Autowired
+    private ObjectMapper mapper;
 
     @Autowired
     private MockMvc mockMvc;
@@ -43,32 +45,41 @@ public class RobotControllerTest {
 
     @Test
     public void place_and_fail_if_invalid_move() throws Exception {
-        placeRobotOnStarting();
+        place(new Position(3, 2, Position.Direction.WEST));
 
         // TODO define test
     }
 
     @Test
     public void place_and_report_should_return_position() throws Exception {
-        placeRobotOnStarting();
+        final Position position = new Position(3, 2, Position.Direction.WEST);
 
-        mockMvc.perform(get("/robot"))
-                .andExpect(status().isOk())
-                .andExpect(content().json(positionJson));
+        place(position);
+
+        report(position);
     }
 
     @Test
     public void place_move_and_report() throws Exception {
-        placeRobotOnStarting();
+        final Position startingPosition = new Position(3, 2, Position.Direction.WEST);
+
+        place(startingPosition);
 
         // TODO make some moves
-        // TODO call report
+
+        report(startingPosition);
     }
 
-    private void placeRobotOnStarting() throws Exception {
+    private void place(Position positionToPlace) throws Exception {
         mockMvc.perform(put("/robot")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(positionJson))
+                .content(mapper.writeValueAsString(positionToPlace)))
                 .andExpect(status().is2xxSuccessful());
+    }
+
+    private void report(Position expectedPosition) throws Exception{
+        mockMvc.perform(get("/robot"))
+                .andExpect(status().isOk())
+                .andExpect(content().json(mapper.writeValueAsString(expectedPosition)));
     }
 }
