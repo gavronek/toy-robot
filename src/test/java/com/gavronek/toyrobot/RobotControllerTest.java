@@ -1,4 +1,4 @@
-package com.gavronek.toyrobot.domain.robot;
+package com.gavronek.toyrobot;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

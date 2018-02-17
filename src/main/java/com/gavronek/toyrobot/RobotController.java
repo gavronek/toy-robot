@@ -1,4 +1,4 @@
-package com.gavronek.toyrobot.domain.robot;
+package com.gavronek.toyrobot;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
