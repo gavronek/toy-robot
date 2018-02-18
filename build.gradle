@@ -33,5 +33,6 @@ dependencies {
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version: '2.4.3'
+    testCompile 'org.mockito:mockito-core:2.15.0'
 
 }

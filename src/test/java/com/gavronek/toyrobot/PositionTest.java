@@ -1,6 +1,5 @@
 package com.gavronek.toyrobot;
 
-import javafx.geometry.Pos;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,17 +9,19 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static com.gavronek.toyrobot.Position.Direction.*;
+import static com.gavronek.toyrobot.Position.Direction.EAST;
+import static com.gavronek.toyrobot.Position.Direction.NORTH;
+import static com.gavronek.toyrobot.Position.Direction.SOUTH;
+import static com.gavronek.toyrobot.Position.Direction.WEST;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @JsonTest
 public class PositionTest {
+    private static final String exampleJson = "{\"x\" : 5, \"y\" : 6, \"direction\" : \"EAST\"}";
     @Autowired
     private JacksonTester<Position> json;
-
     private Position example;
-    private String exampleJson = "{\"x\" : 5, \"y\" : 6, \"direction\" : \"EAST\"}";
 
     @Before
     public void setUp() throws Exception {
@@ -54,7 +55,7 @@ public class PositionTest {
         Position position = position(3, 3, NORTH);
 
         position = position.forward();
-        assertThat(position).isEqualTo(position(3,4, NORTH));
+        assertThat(position).isEqualTo(position(3, 4, NORTH));
 
         position = position.turnRight().forward();
         assertThat(position).isEqualTo(position(4, 4, EAST));
@@ -71,7 +72,7 @@ public class PositionTest {
         Position position = position(3, 3, WEST);
 
         position = position.forward();
-        assertThat(position).isEqualTo(position(2,3, WEST));
+        assertThat(position).isEqualTo(position(2, 3, WEST));
 
         position = position.turnLeft().forward();
         assertThat(position).isEqualTo(position(2, 2, SOUTH));

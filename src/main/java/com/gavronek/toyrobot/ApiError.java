@@ -5,8 +5,8 @@ import java.time.OffsetDateTime;
 import java.util.Objects;
 
 public class ApiError {
+    private final OffsetDateTime timestamp;
     private HttpStatus status;
-    private OffsetDateTime timestamp;
     private String message;
     private String debugMessage;
 
@@ -14,14 +14,14 @@ public class ApiError {
         timestamp = OffsetDateTime.now();
     }
 
-    ApiError(HttpStatus status, Throwable ex) {
+    ApiError(final HttpStatus status, final Throwable ex) {
         this();
         this.status = status;
         this.message = "Unexpected error";
         this.debugMessage = ex.getLocalizedMessage();
     }
 
-    ApiError(HttpStatus status, String message, Throwable ex) {
+    ApiError(final HttpStatus status, final String message, final Throwable ex) {
         this();
         this.status = status;
         this.message = message;

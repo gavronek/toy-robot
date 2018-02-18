@@ -10,11 +10,15 @@ public class Table {
     private final int dimensionX;
     private final int dimensionY;
 
-    @Autowired
-    public Table(@Value("${table.dimensions.x}") final int dimensionX, @Value("${table.dimensions.y}") final int dimensionY) {
-        robot = new Robot();
+    Table(final Robot robot, final int dimensionX, final int dimensionY) {
+        this.robot = robot;
         this.dimensionX = dimensionX;
         this.dimensionY = dimensionY;
+    }
+
+    @Autowired
+    public Table(@Value("${table.dimensions.x}") final int dimensionX, @Value("${table.dimensions.y}") final int dimensionY) {
+        this(new Robot(), dimensionX, dimensionY);
     }
 
     public void apply(final RobotCommand command) {
@@ -33,7 +37,7 @@ public class Table {
         return robot;
     }
 
-    private boolean isBetween(int x, int fromIncl, int toExcl) {
+    private boolean isBetween(final int x, final int fromIncl, final int toExcl) {
         return fromIncl <= x  && x < toExcl;
     }
 }

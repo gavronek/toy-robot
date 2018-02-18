@@ -7,7 +7,6 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,19 +73,19 @@ public class RobotController {
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-    public ApiError handleValidationException(IllegalArgumentException ex) {
+    public ApiError handleValidationException(final IllegalArgumentException ex) {
         return new ApiError(HttpStatus.UNPROCESSABLE_ENTITY, "Validation failed. Move ignored.", ex);
     }
 
     @ExceptionHandler(IllegalStateException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ApiError handleStateException(IllegalStateException ex) {
+    public ApiError handleStateException(final IllegalStateException ex) {
         return new ApiError(HttpStatus.BAD_REQUEST, "Preconditions for move did not meet.", ex);
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ApiError handleOtherException(Exception ex) {
+    public ApiError handleOtherException(final Exception ex) {
         return new ApiError(HttpStatus.BAD_REQUEST, ex);
     }
 }

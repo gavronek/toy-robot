@@ -6,6 +6,8 @@ import org.junit.Test;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class TableTest {
     private Table table;
@@ -21,15 +23,14 @@ public class TableTest {
     }
 
     @Test
-    public void calls_command_with_robot_and_sets_position() throws Exception {
-        final Position position = new Position(3, 7, Position.Direction.SOUTH);
+    public void test_apply() throws Exception {
+        RobotCommand mockCommand = mock(RobotCommand.class);
+        Robot robot = mock(Robot.class);
+        Table table = new Table(robot, 10, 10);
 
-        table.apply(r -> {
-            assertThat(r).isEqualTo(table.getRobot());
-            return position;
-        });
+        table.apply(mockCommand);
 
-        assertThat(table.getRobot().getPosition()).isEqualTo(position);
+        verify(robot).apply(mockCommand, table);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -53,8 +54,7 @@ public class TableTest {
         triggerValidation(0, 10);
     }
 
-    private void triggerValidation(int x, int y) throws Exception {
-        table.apply(r -> new Position(x, y, Position.Direction.SOUTH));
-
+    private void triggerValidation(int x, int y) {
+        table.validate(new Position(x, y, Position.Direction.NORTH));
     }
 }

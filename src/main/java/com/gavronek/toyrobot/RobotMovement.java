@@ -7,7 +7,7 @@ public enum RobotMovement implements RobotCommand {
 
     private final RobotCommand command;
 
-    RobotMovement(RobotCommand command) {
+    RobotMovement(final RobotCommand command) {
         this.command = command;
     }
 

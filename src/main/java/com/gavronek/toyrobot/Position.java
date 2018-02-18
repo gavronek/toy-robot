@@ -61,11 +61,6 @@ public final class Position {
         return Objects.hash(x, y, direction);
     }
 
-    @Override
-    public String toString() {
-        return String.format("Position{x=%d, y=%d, direction=%s}", x, y, direction);
-    }
-
     public enum Direction {
         NORTH(0, 1),
         EAST(1, 0),
@@ -75,7 +70,7 @@ public final class Position {
         private final int deltaX;
         private final int deltaY;
 
-        Direction(int deltaX, int deltaY) {
+        Direction(final int deltaX, final int deltaY) {
             this.deltaX = deltaX;
             this.deltaY = deltaY;
         }

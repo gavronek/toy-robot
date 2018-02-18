@@ -53,6 +53,7 @@ curl -X POST "https://toy-robot.herokuapp.com/robot/commands" -H "accept: applic
 - Service is manipulating one and only one robot moving on 5x5 table
 - Invalid moves do return HTTP errors and never alter the state of the robot
 - No need for persistence 
+- Because the scope is very limited, classes are not structured in packages
 
 ## Room for improvements
 - User-friendly validation (now: fail at first validation violation)
