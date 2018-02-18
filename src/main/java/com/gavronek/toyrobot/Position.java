@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 
+import static java.util.Objects.requireNonNull;
+
 public final class Position {
     private final int x;
     private final int y;
@@ -17,7 +19,7 @@ public final class Position {
             @JsonProperty("direction") final Direction direction) {
         this.x = x;
         this.y = y;
-        this.direction = direction;
+        this.direction = requireNonNull(direction);
     }
 
     public int getX() {
@@ -30,6 +32,18 @@ public final class Position {
 
     public Direction getDirection() {
         return direction;
+    }
+
+    public Position forward() {
+        return new Position(x + direction.deltaX, y + direction.deltaY, direction);
+    }
+
+    public Position turnRight() {
+        return new Position(x, y, direction.next(true));
+    }
+
+    public Position turnLeft() {
+        return new Position(x, y, direction.next(false));
     }
 
     @Override
@@ -47,10 +61,28 @@ public final class Position {
         return Objects.hash(x, y, direction);
     }
 
+    @Override
+    public String toString() {
+        return String.format("Position{x=%d, y=%d, direction=%s}", x, y, direction);
+    }
+
     public enum Direction {
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST
+        NORTH(0, 1),
+        EAST(1, 0),
+        SOUTH(0, -1),
+        WEST(-1, 0);
+
+        private final int deltaX;
+        private final int deltaY;
+
+        Direction(int deltaX, int deltaY) {
+            this.deltaX = deltaX;
+            this.deltaY = deltaY;
+        }
+
+        public Direction next(final boolean clockWise) {
+            final int dir = clockWise ? 1 : -1;
+            return Direction.values()[Math.floorMod(this.ordinal() + dir, 4)];
+        }
     }
 }

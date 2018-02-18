@@ -29,7 +29,7 @@ public class TableTest {
             return position;
         });
 
-        assertThat(table.getRobot().getPosition()).isEqualTo(Optional.of(position));
+        assertThat(table.getRobot().getPosition()).isEqualTo(position);
     }
 
     @Test(expected = IllegalArgumentException.class)

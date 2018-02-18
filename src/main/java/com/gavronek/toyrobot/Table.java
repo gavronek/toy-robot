@@ -18,12 +18,10 @@ public class Table {
     }
 
     public void apply(final RobotCommand command) {
-        final Position newPosition = command.apply(robot);
-        validate(newPosition);
-        robot.setPosition(newPosition);
+        robot.apply(command, this);
     }
 
-    private void validate(final Position newPosition) {
+    public void validate(final Position newPosition) {
         if (!isBetween(newPosition.getX(), 0, dimensionX))
             throw new IllegalArgumentException(String.format("Position X is not in range [0, %s)", dimensionX));
 
