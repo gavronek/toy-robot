@@ -22,6 +22,8 @@ https://toy-robot.herokuapp.com/swagger-ui.html
 
 ## Example calls
 
+A Postman collection is attached for easy access. 
+
 ##### Report position
 ```bash
 curl -X GET "https://toy-robot.herokuapp.com/robot" -H "accept: application/json"

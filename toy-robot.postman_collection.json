@@ -1,0 +1,155 @@
+{
+	"info": {
+		"name": "toy-robot",
+		"_postman_id": "1cd6fa4a-89ea-0d7f-9711-890d8af90e8c",
+		"description": "Toy robot simulator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "REPORT",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://toy-robot.herokuapp.com/robot",
+					"protocol": "https",
+					"host": [
+						"toy-robot",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"robot"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "MOVE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"command\" : \"MOVE\"\n}"
+				},
+				"url": {
+					"raw": "https://toy-robot.herokuapp.com/robot/commands",
+					"protocol": "https",
+					"host": [
+						"toy-robot",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"robot",
+						"commands"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "LEFT",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"command\" : \"LEFT\"\n}"
+				},
+				"url": {
+					"raw": "https://toy-robot.herokuapp.com/robot/commands",
+					"protocol": "https",
+					"host": [
+						"toy-robot",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"robot",
+						"commands"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "RIGHT",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"command\" : \"RIGHT\"\n}"
+				},
+				"url": {
+					"raw": "https://toy-robot.herokuapp.com/robot/commands",
+					"protocol": "https",
+					"host": [
+						"toy-robot",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"robot",
+						"commands"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PLACE",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"x\" : 0,\n\t\"y\" : 0,\n\t\"direction\" : \"NORTH\"\n}"
+				},
+				"url": {
+					"raw": "https://toy-robot.herokuapp.com/robot",
+					"protocol": "https",
+					"host": [
+						"toy-robot",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"robot"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
