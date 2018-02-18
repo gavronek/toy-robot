@@ -22,7 +22,7 @@ https://toy-robot.herokuapp.com/swagger-ui.html
 
 ## Example calls
 
-A Postman collection is attached for easy access. 
+A [Postman collection](toy-robot.postman_collection.json) is attached for easy access. 
 
 ##### Report position
 ```bash
