@@ -25,6 +25,7 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
 	compile('org.springframework.boot:spring-boot-starter-web')
+    compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version: '2.4.3'

@@ -3,6 +3,7 @@ package com.gavronek.toyrobot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,6 +36,23 @@ public class RobotController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void command(@RequestBody final RobotCommandDTO commandDTO) {
         table.apply(commandDTO.getCommand());
-        return;
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    public ApiError handleValidationException(IllegalArgumentException ex) {
+        return new ApiError(HttpStatus.UNPROCESSABLE_ENTITY, "Validation failed. Move ignored." ,ex);
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public ApiError handleStateException(IllegalStateException ex) {
+        return new ApiError(HttpStatus.BAD_REQUEST, "Preconditions for move did not meet.", ex);
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public ApiError handleOtherException(Exception ex) {
+        return new ApiError(HttpStatus.BAD_REQUEST, ex);
     }
 }
