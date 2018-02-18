@@ -27,6 +27,10 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
     compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
 
+    compile('io.springfox:springfox-swagger2:2.8.0')
+    compile('io.springfox:springfox-swagger-ui:2.8.0')
+
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version: '2.4.3'
 

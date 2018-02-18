@@ -2,8 +2,10 @@ package com.gavronek.toyrobot;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
 import java.util.Objects;
 
+@ApiModel(value = "Command", description = "A command, which will be executed by the robot")
 public final class RobotCommandDTO {
     private final RobotMovement command;
 
